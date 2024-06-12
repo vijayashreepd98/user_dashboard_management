@@ -4,12 +4,12 @@ import { RESPONSE } from "../../global/response";
 class UserUpdateAction {
   async executeMethod(payload: {
     user_id: number;
-    user_name: string;
+    name: string;
     email: string;
     master_role_id: number;
   }) {
     try {
-      const { user_id, user_name, email, master_role_id } = payload;
+      const { user_id, name, email, master_role_id } = payload;
       if (!user_id) {
         return {
           responseCode: RESPONSE["MANDATORY_PARAMETER"].responseCode,
@@ -28,7 +28,7 @@ class UserUpdateAction {
       }
 
       let updateData: { [key: string]: string | number } = {};
-      if (user_name) updateData.user_name = user_name;
+      if (name) updateData.name = name;
       if (email) updateData.email = email;
       if (master_role_id) updateData.master_role_id = master_role_id;
 
