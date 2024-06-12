@@ -9,9 +9,10 @@ const router: Router = Router();
 
 router.get("/", async (req: Request, res: Response) => {
   try {
-    const result = await new UserListAction().executeMethod(req.query);
-    res.setHeader(`Access-Control-Allow-Origin`, `*`);
-    res.setHeader(`content-type`, `application/json`);
+    console.log(req.query);
+    const result = await new UserListAction().executeMethod({
+      ...req.query,
+    });
     return res.status(200).send(result); // Send a response body along with the status code
   } catch (error) {
     res.status(500).json({ error: (error as Error).message }); // Handle errors gracefully
@@ -21,10 +22,8 @@ router.get("/", async (req: Request, res: Response) => {
 router.get("/:id", async (req: Request, res: Response) => {
   try {
     const result = await new UserDetailAction().executeMethod({
-      user_id: req.params.id,
+      user_id: parseInt(req.params.id),
     });
-    res.setHeader(`Access-Control-Allow-Origin`, `*`);
-    res.setHeader(`content-type`, `application/json`);
     return res.status(200).send(result); // Send a response body along with the status code
   } catch (error) {
     res.status(500).json({ error: (error as Error).message }); // Handle errors gracefully
@@ -44,8 +43,9 @@ router.put("/update", async (req: Request, res: Response) => {
 
 router.delete("/delete/:id", async (req: Request, res: Response) => {
   try {
+    console.log(`first...`);
     const result = await new UserDeleteAction().executeMethod({
-      user_id: req.params.id,
+      user_id: parseInt(req.params.id),
     });
     res.setHeader(`Access-Control-Allow-Origin`, `*`);
     res.setHeader(`content-type`, `application/json`);
@@ -55,11 +55,11 @@ router.delete("/delete/:id", async (req: Request, res: Response) => {
   }
 });
 
-router.delete("/delete/", async (req: Request, res: Response) => {
+router.delete("/delete", async (req: Request, res: Response) => {
   try {
+    console.log(`sfsdsd second`);
+    console.log(req.body);
     const result = await new UserDeleteByIdsAction().executeMethod(req.body);
-    res.setHeader(`Access-Control-Allow-Origin`, `*`);
-    res.setHeader(`content-type`, `application/json`);
     return res.status(200).send(result); // Send a response body along with the status code
   } catch (error) {
     res.status(500).json({ error: (error as Error).message }); // Handle errors gracefully

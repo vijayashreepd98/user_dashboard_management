@@ -1,8 +1,8 @@
-import { deleteUser, getUserDetail, updateUser } from "../../library/user.lib";
+import { deleteUser, getUserDetail } from "../../library/user.lib";
 import { RESPONSE } from "../../global/response";
 
 class UserDeleteAction {
-  async executeMethod(payload:  {[key:string]:number}) {
+  async executeMethod(payload: { [key: string]: number }) {
     try {
       const { user_id } = payload;
 
@@ -24,6 +24,7 @@ class UserDeleteAction {
       }
 
       const deletedUser = await deleteUser({ user_id: user_id });
+
       if (deletedUser)
         return {
           responseCode: RESPONSE[`SUCCESS`].responseCode,
@@ -32,7 +33,7 @@ class UserDeleteAction {
         };
     } catch (e) {
       return {
-        responseCode: 200,
+        responseCode: 500,
         responseMessage: (e as Error).message,
         responseData: {},
       };
