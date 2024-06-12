@@ -15,7 +15,7 @@ class MasterRolesAction {
       };
     } catch (e) {
       return {
-        responseCode: 200,
+        responseCode: 500,
         responseMessage: (e as Error).message,
         responseData: {},
       };

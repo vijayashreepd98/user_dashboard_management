@@ -1,3 +1,5 @@
+import { DEFAULT_PAGE_LIMIT } from "../global/constant";
+
 const { initUserModel } = require(`./models/user`);
 
 export async function createUser(userData: {
@@ -15,7 +17,7 @@ export async function createUser(userData: {
 export async function fetchUserList(
   queryData = {},
   page = 1,
-  limit = 10,
+  limit = DEFAULT_PAGE_LIMIT,
   attributes = [
     "user_id",
     "name",
@@ -71,7 +73,7 @@ export async function getUserDetail(
 
 export async function updateUser(
   queryData: { [key: string | number]: string | Array<string> | number },
-  updatedData: { [key: string]: string | Array<string> }
+  updatedData: { [key: string]: string | number }
 ) {
   try {
     const User = await initUserModel();
@@ -106,6 +108,18 @@ export async function deleteUser(queryData: {
   }
 }
 
+export async function deleteAllUser() {
+  try {
+    const User = await initUserModel();
+    return await User.destroy({
+      truncate: true,
+      returning: true,
+      // This option makes Sequelize return the updated rows
+    });
+  } catch (e) {
+    throw new Error((e as Error).message);
+  }
+}
 export async function deleteUsersByIds(queryData: {
   user_id: { [key: string]: Array<number> };
 }) {

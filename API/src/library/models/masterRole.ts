@@ -7,7 +7,9 @@ interface MasterRoleAttributes {
   role_name: string;
 }
 
-class MasterRoleModel extends Model<MasterRoleAttributes> {}
+class MasterRoleModel extends Model<MasterRoleAttributes> {
+  [x: string]: any;
+}
 
 let masterRoleModel: typeof MasterRoleModel;
 
