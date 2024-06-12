@@ -136,7 +136,7 @@ const UserList = () => {
     try {
       const payload = {
         user_id: updateData.user_id,
-        user_name: updateData.user_name,
+        name: updateData.name,
         email: updateData.email,
         master_role_id: updateData.master_role_id,
       };
