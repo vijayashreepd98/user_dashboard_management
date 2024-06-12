@@ -1,13 +1,24 @@
-const { Sequelize } = require(`sequelize`);
-//postgresql://postgres:[MY_PASSWORD]@localhost:5432/[DATABASE_NAME]
+
+const { Sequelize } = require('sequelize');
+const { resolve } = require('path');
+const fs = require('fs');
+
 export const sequelize = new Sequelize(
-  `postgresql://postgres:password@localhost:5433/user-db`,
+  `postgresql://postgres.azkftdtekzxclbaauphz:iQulOfht5XTE6JjG@aws-0-ap-south-1.pooler.supabase.com:6543/postgres`,
   {
-    logging: false, // Disable logging
+    dialect: 'postgres',
+    logging: true, 
+    dialectOptions: {
+      ssl: {
+        require: true,
+        rejectUnauthorized: false, 
+        ca: fs.readFileSync(resolve(__dirname, './prod-ca-2021.crt')),
+      },
+    },
   }
 );
 
-async function connectToBD() {
+async function connectToDB() {
   try {
     await sequelize.authenticate();
     console.log("Connection has been established successfully.");
@@ -16,4 +27,5 @@ async function connectToBD() {
   }
 }
 
-connectToBD();
+connectToDB();
+
