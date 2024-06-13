@@ -37,7 +37,7 @@ const UserContextProvider = ({ children }: { children: JSX.Element }) => {
         payload["limit"] = 10;
       }
       const users = await fetchUserList(payload);
-      setUserData(users);
+      setUserData({...users});
       // if (isLoading)
       // timerId = setTimeout(() => {
       setIsLoading(false);
@@ -52,6 +52,10 @@ const UserContextProvider = ({ children }: { children: JSX.Element }) => {
       clearTimeout(timerId);
     };
   }, [searchText, currentPage]);
+
+  useEffect(()=>{
+    console.log(`ùsr updatn`)
+  },[userData])
 
   return (
     <UserContext.Provider

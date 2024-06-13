@@ -1,0 +1,29 @@
+org: viji12345678
+service: user-api-dashboard
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+
+# plugins:
+#   - serverless-plugin-typescript
+
+functions:
+  api:
+    handler: index.handler
+    events:
+      - http:
+          path: /{proxy+}
+          method: any
+    environment:
+      PGHOST: aws-0-ap-south-1.pooler.supabase.com
+      PGDATABASE: postgres
+      PGUSER: postgres.azkftdtekzxclbaauphz
+      PGPASSWORD: iQulOfht5XTE6JjG
+    package:
+      include:
+        - node_modules/pg
+
+package:
+  exclude:
+    - node_modules/**

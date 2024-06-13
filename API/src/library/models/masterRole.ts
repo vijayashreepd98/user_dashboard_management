@@ -1,4 +1,4 @@
-import { DataTypes, Model } from "sequelize";
+const { DataTypes, Model } = require('sequelize');
 
 const { sequelize } = require(`../../dbConnect/connect`);
 

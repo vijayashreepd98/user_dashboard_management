@@ -26,7 +26,8 @@ const UserList = () => {
     forceLoad,
   } = useContext(UserContext);
   const { isLoading: roleLoading } = useContext(RoleContext);
-  const { isModelOpen, setIsModelOpen } = useContext(ModelContext);
+  const { isModelOpen, setIsModelOpen, setIsApiCallInQue } =
+    useContext(ModelContext);
   const [popUpMessage, setPopUpMessage] = useState<{
     popUpType: "info" | "confirmation" | "form";
     message: string;
@@ -83,12 +84,15 @@ const UserList = () => {
           message: "User successfully deleted!",
         });
       }
+      setIsApiCallInQue(false);
+      await forceLoad();
     } catch (e) {
       setPopUpMessage({
         ...popUpMessage,
         popUpType: "info",
         message: (e as Error).message,
       });
+      setIsApiCallInQue(false);
     }
   }
   async function onDeleteHandler() {
@@ -141,15 +145,12 @@ const UserList = () => {
         master_role_id: updateData.master_role_id,
       };
       await updateUser(payload);
+      setIsApiCallInQue(false);
+      await forceLoad();
       setPopUpMessage({
         ...popUpMessage,
         popUpType: "info",
         message: "User Details changed!",
-      });
-      setPopUpMessage({
-        ...popUpMessage,
-        popUpType: "info",
-        message: "User successfully deleted!",
       });
     } catch (e) {
       setPopUpMessage({
@@ -157,11 +158,11 @@ const UserList = () => {
         popUpType: "info",
         message: (e as Error).message,
       });
+      setIsApiCallInQue(false);
     }
   };
 
   const onCloseOverlay = () => {
-    forceLoad();
     setCheckboxIds([]);
     setIsCheckedAll(false);
     setIsModelOpen(false);

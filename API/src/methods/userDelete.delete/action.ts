@@ -6,7 +6,7 @@ class UserDeleteAction {
     try {
       const { user_id } = payload;
 
-      if (!user_id) {
+      if (!user_id && user_id != 0) {
         return {
           responseCode: RESPONSE["MANDATORY_PARAMETER"].responseCode,
           responseMessage:

@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import Button from "./Button";
+import { ModelContext } from "../Context/ContextData";
 
 const PopUp = ({
   popUpcontent,
@@ -15,6 +16,8 @@ const PopUp = ({
   onCancelHandler?: () => void;
   onConfirmHandler?: () => void;
 }) => {
+  const { isApiCallInQue, setIsApiCallInQue } = useContext(ModelContext);
+
   return (
     <PopUpContainer onClick={(e) => e.stopPropagation()}>
       {popUpType == "info" ? (
@@ -39,8 +42,10 @@ const PopUp = ({
               <Button
                 buttonText={"Confirm"}
                 onClickHandler={() => {
+                  setIsApiCallInQue(true);
                   onConfirmHandler();
                 }}
+                disabled={isApiCallInQue}
                 buttonType={"regular"}
                 color="#d9cef2"
                 backgroundColor="#7f5bd6"

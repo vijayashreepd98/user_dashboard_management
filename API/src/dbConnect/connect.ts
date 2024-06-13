@@ -1,18 +1,19 @@
-
-const { Sequelize } = require('sequelize');
-const { resolve } = require('path');
-const fs = require('fs');
+import path from "path";
+require('dotenv').config();
+const { Sequelize } = require("sequelize");
+const fs = require("fs");
 
 export const sequelize = new Sequelize(
   `postgresql://postgres.azkftdtekzxclbaauphz:iQulOfht5XTE6JjG@aws-0-ap-south-1.pooler.supabase.com:6543/postgres`,
   {
-    dialect: 'postgres',
-    logging: true, 
+    dialect: "postgres",
+    dialectModule: require('pg'),
+    logging: true,
     dialectOptions: {
       ssl: {
         require: true,
-        rejectUnauthorized: false, 
-        ca: fs.readFileSync(resolve(__dirname, './prod-ca-2021.crt')),
+        rejectUnauthorized: false,
+        ca: process.env.DB_CERTIFICATE,
       },
     },
   }
@@ -28,4 +29,3 @@ async function connectToDB() {
 }
 
 connectToDB();
-

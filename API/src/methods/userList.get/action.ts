@@ -20,7 +20,7 @@ class UserListAction {
             { role_name: { [Op.iLike]: `%${search_text}%` } },
             ["master_role_id"]
           )
-        ).map((role) => Number(role.master_role_id));
+        ).map((role: { master_role_id: any; }) => Number(role.master_role_id));
 
         queryData = {
           [Op.or]: [

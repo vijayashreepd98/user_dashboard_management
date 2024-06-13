@@ -35,9 +35,13 @@ const UserContext = createContext<{
 const ModelContext = createContext<{
   isModelOpen: boolean;
   setIsModelOpen:  Dispatch<SetStateAction<boolean>>;
+  isApiCallInQue:boolean ;
+  setIsApiCallInQue:Dispatch<SetStateAction<boolean>>;
 }>({
   isModelOpen: false,
   setIsModelOpen: () => {},
+  isApiCallInQue:false,
+  setIsApiCallInQue:()=>{}
 });
 
 const RoleContext = createContext<{
