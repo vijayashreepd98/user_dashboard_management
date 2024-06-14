@@ -8,7 +8,7 @@ export const sequelize = new Sequelize(
   {
     dialect: "postgres",
     dialectModule: require('pg'),
-    logging: true,
+    logging: false,
     dialectOptions: {
       ssl: {
         require: true,

@@ -163,6 +163,46 @@ const PaginationContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: row;
+  justify-content:space-between;
+      @media screen and (max-width: 1200px) {
+      padding: 0.7rem 0;
+  & > button:first-child {
+    width:2rem;
+      position: relative;
+      visibility: hidden;
+      &::after {
+        content: '←' !important; 
+        position: absolute;
+        top: 50%;
+        left: 0.8rem;
+        font-size:1.2rem;
+        transform: translate(0, -50%);
+        white-space: nowrap;
+        padding:0 !important;
+        visibility: visible; /* Ensure the new text is visible */
+      };
+    };
+    & > button:last-child {
+    width:2rem;
+      position: relative;
+      visibility: hidden;
+      padding:0;
+
+      &::after {
+        content: '→' !important;
+        position: absolute;
+        top: 50%;
+        right:0.8rem;
+        padding:0;
+        font-size:1.2rem;
+        transform: translate(0, -50%);
+        white-space: nowrap;
+        visibility: visible; 
+      }
+    }
+  }
+  }
+ 
 `;
 
 const PaginationBar = styled.div`
@@ -172,6 +212,14 @@ const PaginationBar = styled.div`
   gap: 0.5rem;
   justify-content: center;
   align-contents: center;
+  @media screen and (max-width: 700px) {
+    padding: 0 0.5rem;
+    align-items: center;
+    gap: 0.7rem;
+  }
+  @media screen and (max-width: 350px) {
+    gap: 0.5rem;
+  }
 `;
 
 const PaginationButton = styled.button<PageBarButtonProps>`
@@ -194,11 +242,18 @@ const PaginationButton = styled.button<PageBarButtonProps>`
     cursor-pointer: none;
     cursor: not-allowed;
   }
+  @media screen and (max-width: 700px) {
+    padding: 0.3rem 0.3rem;
+    height: fit-content;
+  }
+  @media screen and (max-width: 350px) {
+    padding: 0.3rem 0.2rem;
+    height: fit-content;
+  }
 `;
 
 const Seperator = styled.p`
   color: #969caa;
-  padding: 0rem 1rem;
   text-align: center;
   height: auto;
   display: inline-block;

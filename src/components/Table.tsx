@@ -11,9 +11,9 @@ const Table = ({
   setIsCheckedAll,
   isCheckedAll,
 }: {
-  userList: Array<UserProps|any>;
-  onEditHandler: (value:UserProps) => void;
-  onDeleteHandler: (value:number) => void;
+  userList: Array<UserProps | any>;
+  onEditHandler: (value: UserProps) => void;
+  onDeleteHandler: (value: number) => void;
   setIsCheckedAll: Dispatch<SetStateAction<boolean>>;
   isCheckedAll: boolean;
 }) => {
@@ -77,13 +77,19 @@ const TableHeaderCheckbox = styled.div`
 `;
 
 const TableContainer = styled.table`
-  width: 100%;
   height: 100%;
   padding: 0.5rem 0;
   margin-top: 0.5rem;
-  overflow: scroll;
   table-layout: fixed;
   border-bottom: 1px solid #f1f2f5;
+  overflow:hidden;
+  scrollbar-width: none; 
+  @media screen and (max-width: 500px) {
+    width: max-content;
+  };
+  @media screen and (min-width:768px){
+    width: max-content;
+  }
 `;
 
 const NoDataContainer = styled.div`
@@ -94,6 +100,7 @@ const NoDataContainer = styled.div`
   font-weight: 400;
   box-sizing: border-box;
 `;
+
 const TableHeader = styled.th`
   text-align: left;
   width: 100%;
@@ -106,10 +113,15 @@ const TableHeader = styled.th`
   border-collapse: collapse;
   &:first-child {
     padding: 10px 0px;
-  }
+  };
+  @media screen and (max-width: 500px) {
+    width: fit-content;
+  };
 `;
 
-const TableHeaderContainer = styled.thead``;
+const TableHeaderContainer = styled.thead`
+  width: fit-content;
+`;
 
 const TableHeaderRow = styled.tr`
   width: 100%;
@@ -119,10 +131,19 @@ const TableHeaderRow = styled.tr`
   border-bottom: 2px solid #f3f4f7;
   background-color: #f9fafb;
   padding: 0 1.3rem;
+  @media screen and (max-width: 540px) {
+    width: fit-content;
+    grid-template-columns: 2rem 15rem 7rem 11rem 18rem 15rem 6rem;
+  }
 `;
 
 const TableBody = styled.tbody`
   width: 100%;
+  overflow:hidden;
+  @media screen and (max-width: 500px) {
+    width: fit-content;
+    scrollbar-width: none; 
+  }
 `;
 
 export const TableCell = styled.td`
@@ -139,6 +160,9 @@ export const TableCell = styled.td`
     padding: 12px 0;
   }
   &:last-child {
+  }
+  @media screen and (max-width: 500px) {
+    width: fit-content;
   }
 `;
 

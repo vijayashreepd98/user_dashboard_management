@@ -241,13 +241,15 @@ const UserList = () => {
               <Loading />
             ) : (
               <React.Fragment>
-                <Table
-                  userList={userData.user_list}
-                  onDeleteHandler={onDeleteUserHandler}
-                  onEditHandler={onEditHandler}
-                  setIsCheckedAll={setIsCheckedAll}
-                  isCheckedAll={isCheckedAll}
-                />
+                <TableContainer>
+                  <Table
+                    userList={userData.user_list}
+                    onDeleteHandler={onDeleteUserHandler}
+                    onEditHandler={onEditHandler}
+                    setIsCheckedAll={setIsCheckedAll}
+                    isCheckedAll={isCheckedAll}
+                  />
+                </TableContainer>
                 {userData.user_list.length ? (
                   <Footer>
                     <Pagination
@@ -270,6 +272,14 @@ const UserList = () => {
   );
 };
 
+const TableContainer = styled.div`
+  width: 100%;
+  overflow: auto;
+  scrollbar-width: none;
+  height: fit-content;
+  position: relative;
+`;
+
 const OverlayContainer = styled.div`
   width: 100%;
   height: 100%;
@@ -289,6 +299,9 @@ const PageContainer = styled.div`
   box-sizing: border-box;
   overflow: hidden;
   z-index: 1;
+  @media screen and (max-width: 500px) {
+    padding: 1rem 1rem;
+ }
 `;
 const PopUpHeader = styled.div`
   padding: 0.6rem;
@@ -333,10 +346,12 @@ const UserListContainer = styled.div`
   gap: 0.3rem;
   box-shadow: 0px 0px 10px #e4e4e6;
   margin-bottom: 2rem;
+  overflow: hidden;
+  scrollbar-width: none;
+
 `;
 
 const UserListHeaderContainer = styled.div`
-  width: 100%;
   height: fit-content;
   display: flex;
   flex-direction: row;
@@ -344,8 +359,12 @@ const UserListHeaderContainer = styled.div`
   box-sizing: border-box;
   padding: 0 1.5rem;
   align-items: center;
+  overflow: hidden;
   & > *:nth-child(3) {
     margin-left: auto;
+  }
+  @media screen and (max-width: 500px) {
+    padding: 0 0.8rem;
   }
 `;
 
@@ -369,12 +388,15 @@ const SearchBar = styled.input`
   outline: none;
   &:focus {
     border: 1px solid #9a57fb;
+  };
+  @media screen and (max-width: 1200px) {
+    margin-left: 0.8rem;
+    width: 50%;
   }
 `;
 
 const UserListContentContainer = styled.div`
-  width: 100%;
-  overflow: hidden;
+  scrollbar-width: none;
 `;
 
 const Footer = styled.div`
@@ -384,6 +406,10 @@ const Footer = styled.div`
   padding: 0 1.3rem;
   box-sizing: border-box;
   flex-direction: row;
+  @media screen and (max-width: 500px) {
+    flex: 1;
+    padding: 0;
+  }
 `;
 
 export default UserList;

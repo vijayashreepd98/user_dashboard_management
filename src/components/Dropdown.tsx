@@ -125,7 +125,7 @@ const DropdownContent = styled.div<DropdownContentStyleProps>`
   border-radius: 0.5rem;
   box-shadow: 1px 2px 2px #e5e7e7;
   padding-bottom: 0.5rem;
-  scrollbar-width: none; /* Firefox */
+  scrollbar-width: none; 
   z-index: 1;
 `;
 

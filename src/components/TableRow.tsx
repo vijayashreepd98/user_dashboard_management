@@ -8,7 +8,7 @@ import { faPencil } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashAlt } from "@fortawesome/free-regular-svg-icons";
 
- export interface UserProps {
+export interface UserProps {
   user_id: number;
   avatar: string;
   name: string;
@@ -59,9 +59,7 @@ const TableRow = React.forwardRef<HTMLTableRowElement, Props>(
       <TableRowContainer ref={ref}>
         <TableCell>
           <Checkbox
-            isChecked={
-              checkboxIds.includes(userData.user_id) || isCheckedAll
-            }
+            isChecked={checkboxIds.includes(userData.user_id) || isCheckedAll}
             onClickCheckbox={onClickCheckbox}
           />
         </TableCell>
@@ -125,10 +123,7 @@ const TableRow = React.forwardRef<HTMLTableRowElement, Props>(
               />
             </ActionButton>
             <ActionButton onClick={() => onEditHandler(userData)}>
-              <FontAwesomeIcon
-                icon={faPencil}
-                style={{ fontSize: "1.3rem" }}
-              />
+              <FontAwesomeIcon icon={faPencil} style={{ fontSize: "1.3rem" }} />
             </ActionButton>
           </ActionButtonContainer>
         </TableCell>
@@ -158,10 +153,15 @@ const CellText = styled.p`
 const TableRowContainer = styled.tr`
   width: 100%;
   display: grid;
+  height: fit-content;
   grid-template-columns: 2rem 15rem 7rem 11rem 1fr 15rem auto;
   justify-content: center;
   box-sizing: border-box;
   padding: 0 1.3rem;
+  @media screen and (max-width: 540px) {
+    width: fit-content;
+    grid-template-columns: 2rem 15rem 7rem 11rem 18rem 15rem auto;
+  }
 `;
 
 const TeamContainer = styled.div`
