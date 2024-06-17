@@ -1,5 +1,7 @@
 const API_END_POINT =
-  "https://ep9jv47c0d.execute-api.us-east-1.amazonaws.com/dev/";
+"http://localhost:3000/";
+
+  // "https://ep9jv47c0d.execute-api.us-east-1.amazonaws.com/dev/";
 const STATUS_CODES = {
   NOT_FOUND: 404,
   SUCCESS: 200,

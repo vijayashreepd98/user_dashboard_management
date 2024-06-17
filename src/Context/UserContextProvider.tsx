@@ -53,10 +53,6 @@ const UserContextProvider = ({ children }: { children: JSX.Element }) => {
     };
   }, [searchText, currentPage]);
 
-  useEffect(()=>{
-    console.log(`ùsr updatn`)
-  },[userData])
-
   return (
     <UserContext.Provider
       value={{

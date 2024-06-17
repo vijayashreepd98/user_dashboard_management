@@ -61,7 +61,16 @@ const UserList = () => {
       if (popUpMessage.data.user_id) {
         await deleteUser(popUpMessage.data.user_id);
         setPopUpMessage({
-          ...popUpMessage,
+          data: {
+            user_id: 0,
+            avatar: "",
+            name: "",
+            user_name: "",
+            is_active: false,
+            email: "",
+            master_role_id: 0,
+            teams: [],
+          },
           popUpType: "info",
           message: "User successfully deleted!",
         });
@@ -79,7 +88,16 @@ const UserList = () => {
         }
         await deleteUsersById(payload);
         setPopUpMessage({
-          ...popUpMessage,
+          data: {
+            user_id: 0,
+            avatar: "",
+            name: "",
+            user_name: "",
+            is_active: false,
+            email: "",
+            master_role_id: 0,
+            teams: [],
+          },
           popUpType: "info",
           message: "User successfully deleted!",
         });
@@ -88,7 +106,16 @@ const UserList = () => {
       await forceLoad();
     } catch (e) {
       setPopUpMessage({
-        ...popUpMessage,
+        data: {
+          user_id: 0,
+          avatar: "",
+          name: "",
+          user_name: "",
+          is_active: false,
+          email: "",
+          master_role_id: 0,
+          teams: [],
+        },
         popUpType: "info",
         message: (e as Error).message,
       });
@@ -105,7 +132,16 @@ const UserList = () => {
       });
     } catch (e) {
       setPopUpMessage({
-        ...popUpMessage,
+        data: {
+          user_id: 0,
+          avatar: "",
+          name: "",
+          user_name: "",
+          is_active: false,
+          email: "",
+          master_role_id: 0,
+          teams: [],
+        },
         popUpType: "info",
         message: (e as Error).message,
       });
@@ -148,13 +184,31 @@ const UserList = () => {
       setIsApiCallInQue(false);
       await forceLoad();
       setPopUpMessage({
-        ...popUpMessage,
+        data: {
+          user_id: 0,
+          avatar: "",
+          name: "",
+          user_name: "",
+          is_active: false,
+          email: "",
+          master_role_id: 0,
+          teams: [],
+        },
         popUpType: "info",
         message: "User Details changed!",
       });
     } catch (e) {
       setPopUpMessage({
-        ...popUpMessage,
+        data: {
+          user_id: 0,
+          avatar: "",
+          name: "",
+          user_name: "",
+          is_active: false,
+          email: "",
+          master_role_id: 0,
+          teams: [],
+        },
         popUpType: "info",
         message: (e as Error).message,
       });
@@ -301,7 +355,7 @@ const PageContainer = styled.div`
   z-index: 1;
   @media screen and (max-width: 500px) {
     padding: 1rem 1rem;
- }
+  }
 `;
 const PopUpHeader = styled.div`
   padding: 0.6rem;
@@ -348,7 +402,6 @@ const UserListContainer = styled.div`
   margin-bottom: 2rem;
   overflow: hidden;
   scrollbar-width: none;
-
 `;
 
 const UserListHeaderContainer = styled.div`
@@ -388,7 +441,7 @@ const SearchBar = styled.input`
   outline: none;
   &:focus {
     border: 1px solid #9a57fb;
-  };
+  }
   @media screen and (max-width: 1200px) {
     margin-left: 0.8rem;
     width: 50%;

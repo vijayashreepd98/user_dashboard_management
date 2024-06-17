@@ -24,8 +24,6 @@ const RoleContextProvider = ({ children }: { children: JSX.Element }) => {
         },
         {}
       );
-
-      console.log(updatedRoles);
       setRoleList(updatedRoles);
       setIsLoading(false);
     } catch (e) {

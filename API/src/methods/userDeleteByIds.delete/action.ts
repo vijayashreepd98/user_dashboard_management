@@ -6,7 +6,6 @@ class UserDeleteByIdsAction {
   async executeMethod(payload: { user_ids: string; is_delete_all: boolean }) {
     try {
       const { user_ids, is_delete_all = false } = payload;
-      console.log(user_ids);
 
       if (!user_ids && !is_delete_all) {
         return {

@@ -9,7 +9,6 @@ const router: Router = Router();
 
 router.get("/", async (req: Request, res: Response) => {
   try {
-    console.log(req.query);
     const result = await new UserListAction().executeMethod({
       ...req.query,
     });
@@ -43,7 +42,6 @@ router.put("/update", async (req: Request, res: Response) => {
 
 router.delete("/delete/:id", async (req: Request, res: Response) => {
   try {
-    console.log(`first...`);
     const result = await new UserDeleteAction().executeMethod({
       user_id: parseInt(req.params.id),
     });
@@ -57,8 +55,6 @@ router.delete("/delete/:id", async (req: Request, res: Response) => {
 
 router.delete("/delete", async (req: Request, res: Response) => {
   try {
-    console.log(`sfsdsd second`);
-    console.log(req.body);
     const result = await new UserDeleteByIdsAction().executeMethod(req.body);
     return res.status(200).send(result); // Send a response body along with the status code
   } catch (error) {

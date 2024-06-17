@@ -13,7 +13,6 @@ const getRequest = async (
         queryData.append(key, payload[key]);
       }
     }
-    console.log(queryData);
   }
 
   queryData = queryData ? "?" + queryData : "";
@@ -61,13 +60,7 @@ const deleteRequest = async (
   methodName: string,
   payload?: { [key: string]: string }
 ) => {
-  console.log(`fddss66666`);
-  console.log(payload);
   const urlencoded = new URLSearchParams(payload);
-
-  console.log(urlencoded);
-  console.log(`dddd`);
-  console.log(payload);
   return fetch(API_END_POINT + "" + methodName, {
     method: "DELETE",
     body: urlencoded,
