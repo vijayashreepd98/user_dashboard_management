@@ -4,7 +4,7 @@ const { Sequelize } = require("sequelize");
 const fs = require("fs");
 
 export const sequelize = new Sequelize(
-  `postgresql://postgres.azkftdtekzxclbaauphz:iQulOfht5XTE6JjG@aws-0-ap-south-1.pooler.supabase.com:6543/postgres`,
+  `postgresql://postgres.[user_name]@[host]:6543/postgres`,
   {
     dialect: "postgres",
     dialectModule: require('pg'),
