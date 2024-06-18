@@ -243,7 +243,9 @@ const UserList = () => {
               popUpcontent={
                 <Form
                   formData={popUpMessage.data}
-                  onCancelHandler={() => {}}
+                  onCancelHandler={() => {
+                    setIsModelOpen(false)
+                  }}
                   onSubmitHandler={(updatedUserData: {
                     [key: string]: string | number;
                   }) => {
